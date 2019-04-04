@@ -2,9 +2,9 @@ var datasets={}
 
 function load_data() {
     //load data
-    d3.csv('./data/best_songs_top_ten_per_year.csv', function (data) {
+    d3.csv('./data/top_movies.csv', function (data) {
         data.forEach(function (d) {
-            datasets[d.Year] = {track: d.Track, weeks: parseInt(d.Weeks), artist:d.Artist};
+            datasets[d.Year] = {Title: d.Title, genre: parseInt(d.Genre), country:d.Country};
         });
     });
 }
@@ -21,17 +21,17 @@ function print_hit(year){
     }
 
     year=String(year);
-    var the_song = {label:datasets[year].track,
-            data: datasets[year].weeks,
-            artist: datasets[year].artist};
+    var the_movie = {label:datasets[year].Title,
+            genre: datasets[year].Genre,
+            country: datasets[year].Country};
 
     // affiche le nombre de semaines dans le top de la chanson
-    var nb_w = document.createElement('div');
-    nb_w.id="nb_weeks";
+    var nb_g = document.createElement('div');
+    nb_g.id="genre";
     var subdiv=document.createElement('div');
-    subdiv.id = 'songdata';
+    subdiv.id = 'titledata';
     var span1=document.createElement('p');
-    span1.innerText=String(the_song.data);
+    span1.innerText=String(the_movie.data);
     span1.className="printhit";
     span1.style.fontSize="2em";
     var span2=document.createElement('p');
@@ -47,17 +47,17 @@ function print_hit(year){
     hit_tube_born.id="tube";
     var phrase = document.createElement('h1');
     phrase.className="description_tube";
-    phrase.innerText="Le tube qui a bercé ton enfance est ";
+    phrase.innerText="Le film qui a bercé ton enfance est ";
     phrase.style.fontSize="1.2em";
     phrase.style.color="#3E3636";
     var song_title = document.createElement('h1');
     song_title.className="description_tube";
-    song_title.id="the_song";
-    song_title.innerText=the_song.label;
+    song_title.id="the_movie";
+    song_title.innerText=the_movie.label;
     song_title.style.color="#359bb7";
     var song_artist=document.createElement('h1');
     song_artist.className="printhit";
-    song_artist.innerText="de "+the_song.artist;
+    song_artist.innerText="de "+the_movie.country;
     song_artist.style.color="#af82b7";
     song_artist.style.fontSize="1.2em";
 
@@ -66,6 +66,6 @@ function print_hit(year){
     hit_tube_born.appendChild(song_artist);
 
 
-    born_tube.appendChild(nb_w);
+    born_tube.appendChild(nb_g);
     born_tube.appendChild(hit_tube_born);
 }
