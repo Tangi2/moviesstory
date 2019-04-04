@@ -4,7 +4,7 @@ function load_data() {
     //load data
     d3.csv('./data/top_movies.csv', function (data) {
         data.forEach(function (d) {
-            datasets[d.Year] = {Title: d.Title, genre: parseInt(d.Genre), country:d.Country};
+            datasets[d.Year] = {Title: d.Title, genre: d.Genre, country:d.Country};
         });
     });
 }
@@ -21,9 +21,9 @@ function print_hit(year){
     }
 
     year=String(year);
-    var the_movie = {label:datasets[year].Title,
-            genre: datasets[year].Genre,
-            country: datasets[year].Country};
+    var the_movie = {label:datasets[Year].Title,
+            genre: datasets[Year].Genre,
+            country: datasets[Year].Country};
 
     // affiche le nombre de semaines dans le top de la chanson
     var nb_g = document.createElement('div');
@@ -36,11 +36,11 @@ function print_hit(year){
     span1.style.fontSize="2em";
     var span2=document.createElement('p');
     span2.className="printhit";
-    span2.innerText="semaines \n au top";
+    span2.innerText="genre";
     span2.style.fontSize="0.6em";
     subdiv.appendChild(span1);
     subdiv.appendChild(span2);
-    nb_w.appendChild(subdiv);
+    nb_g.appendChild(subdiv);
 
     // message avec titre de la chanson
     var hit_tube_born = document.createElement('div');
