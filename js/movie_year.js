@@ -4,7 +4,7 @@ function load_data() {
     //load data
     d3.csv('./data/top_movies.csv', function (data) {
         data.forEach(function (d) {
-            datasets[d.Year] = {Title: d.Title, genre: d.Genre, country:d.Country};
+            datasets[d.Year] = {title: d.Title, genre: d.Genre, country:d.Country};
         });
     });
 }
@@ -21,13 +21,13 @@ function print_hit(year){
     }
 
     year=String(year);
-    var the_movie = {label:datasets[Year].Title,
-            genre: datasets[Year].Genre,
-            country: datasets[Year].Country};
+    var the_movie = {label:datasets[year].title,
+            genre: datasets[year].genre,
+            country: datasets[year].country};
 
     // affiche le nombre de semaines dans le top de la chanson
     var nb_g = document.createElement('div');
-    nb_g.id="genre";
+    nb_g.id="nb_genre";
     var subdiv=document.createElement('div');
     subdiv.id = 'titledata';
     var span1=document.createElement('p');
