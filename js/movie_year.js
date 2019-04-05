@@ -68,4 +68,5 @@ function print_hit(year){
 
     born_tube.appendChild(nb_g);
     born_tube.appendChild(hit_tube_born);
+    alert('toto');
 }
